@@ -1,16 +1,35 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100%;
+  width: 100%;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+p {
+  padding-bottom: 1rem;
 }
 
-* {
-  box-sizing: border-box;
+.hoverable {
+  transition: padding-left 0.15s ease-out;
+}
+
+.hoverable:hover {
+  padding-left: 10px;
+}
+
+ol {
+  padding-left: 1em;
+  overflow: auto;
+}
+
+li {
+  white-space: nowrap;
+}
+.card,
+.card-content {
+  border-radius: 12px;
+}
+
+.card-header {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
