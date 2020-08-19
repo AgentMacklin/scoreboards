@@ -1,6 +1,7 @@
-import 'bulma/css/bulma.min.css';
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
 import Head from 'next/head';
-import '../styles/globals.css';
+import '../styles/style.scss';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -8,9 +9,14 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
       </Head>
-      <Component {...pageProps} />
+      <div className="section pt-0">
+        <div className="container is-desktop">
+          <Navbar />
+          <Component {...pageProps} />
+        </div>
+      </div>
+      <Footer />
     </>
   );
 }

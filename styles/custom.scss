@@ -1,0 +1,45 @@
+body,
+html {
+  height: 100%;
+}
+
+.slide-on-hover {
+  transition: transform 0.15s ease;
+}
+
+.slide-on-hover:hover {
+  transform: translateX(5px);
+}
+
+.navbar-item {
+  transition: color 0.15s ease;
+}
+
+.navbar-logo {
+  fill: white;
+}
+
+input {
+  transition: all 0.15s ease;
+}
+
+.is-fullheight {
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.card-header {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+ol {
+  padding-left: 2rem;
+}

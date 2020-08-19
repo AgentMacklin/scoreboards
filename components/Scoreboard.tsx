@@ -20,15 +20,16 @@ export default function Scoreboard(props: ScoreboardProps) {
   if (props.reversed) scoreCols = scoreCols.reverse();
 
   const onNameUpdated = (event: any, player: Player) => {
-    const name = event.target.value.replace(/(<([^>]+)>)/gi, "")
+    const name = event.target.value.replace(/(<([^>]+)>)/gi, '');
     props.nameUpdater(player, name);
-  }
+  };
 
   // When a score cell is edited, try to automatically add the numbers, and
   // then update the state in the parent. If eval() can't be performed, just do
   // nothing and let the player fix it
   const onCellsEdited = (event: any, player: Player, index: number) => {
     try {
+      console.log(props.players);
       const val = eval(event.target.textContent);
       props.scoreUpdater(player, Number(val), index);
     } catch (SyntaxError) {
@@ -57,11 +58,7 @@ export default function Scoreboard(props: ScoreboardProps) {
             return (
               <tr key={idx}>
                 <td>
-                  <ContentEditable
-                    html={player.name}
-                    onChange={(e) => onNameUpdated(e, player)}
-                  >
-                  </ContentEditable>
+                  <ContentEditable html={player.name} onChange={(e) => onNameUpdated(e, player)}></ContentEditable>
                 </td>
                 {player.scores.map((val, i) => {
                   return (
@@ -69,7 +66,7 @@ export default function Scoreboard(props: ScoreboardProps) {
                       <ContentEditable
                         html={String(val ? val : '')}
                         // dummy onChange so TS will stop complaining
-                        onChange={(e) => (e)}
+                        onChange={(e) => e}
                         onBlur={(e) => onCellsEdited(e, player, i)}
                       ></ContentEditable>
                     </td>

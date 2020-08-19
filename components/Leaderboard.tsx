@@ -24,7 +24,7 @@ export default function Leaderboard(props: LeaderboardProps) {
       </div>
       <div className="card-footer">
         <div className="card-footer-item">
-          <button onClick={props.gameResetter} className="button is-danger is-fullwidth is-rounded">
+          <button onClick={props.gameResetter} className="button is-primary is-fullwidth is-rounded">
             Reset Game
           </button>
         </div>

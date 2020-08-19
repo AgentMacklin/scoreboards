@@ -16,7 +16,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
     }
   };
   return (
-    <div onClick={navigateToPage} className="media hoverable is-vcentered">
+    <div onClick={navigateToPage} className="media slide-on-hover is-vcentered">
       {props.image && (
         <figure className="media-left my-auto">
           <div className="image is-96x96">

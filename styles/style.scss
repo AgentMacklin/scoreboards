@@ -1,0 +1,65 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+$platinum: #e6e6e6;
+$platinum-darker: #bebebe;
+$onyx: #39393a;
+$onyx-border: #414142;
+$onyx-lighter: #4e4e4e;
+$onyx-lightest: #666666;
+
+$orange-red-crayola: #fe5f55;
+$ghost-white: #f7f7ff;
+$beau-blue: #bdd5ea;
+$blue-yonder: #577399;
+$black-coral: #495867;
+
+$green: #4caf50;
+$yellow: #fdd835;
+$red: #f44336;
+
+$primary: $orange-red-crayola;
+$link: $orange-red-crayola;
+$info: $black-coral;
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+$text: $ghost-white;
+
+$body-background-color: $onyx;
+$body-color: $platinum;
+$strong-color: $link;
+
+$navbar-background-color: $onyx;
+$navbar-item-color: $platinum;
+$navbar-item-active-color: $primary;
+$navbar-item-hover-background-color: none;
+
+$footer-background-color: $onyx;
+
+$input-background-color: $onyx-lighter;
+$input-border-color: none;
+$input-color: $platinum;
+$input-hover-border-color: $onyx-lightest;
+
+$table-color: $platinum;
+$table-cell-color: $platinum;
+$table-head-cell-color: $platinum;
+$table-background-color: $onyx;
+
+$card-color: $platinum;
+$card-header-color: $platinum;
+$card-background-color: $onyx-lighter;
+$card-footer-border-top: 1px solid $onyx-border;
+
+$breadcrumb-item-active-color: $platinum;
+
+$border: $onyx-lightest;
+
+$footer-padding: 1rem;
+
+$family-sans-serif: 'Dosis', sans-serif;
+
+@import '../node_modules/bulma/bulma.sass';
+@import './custom.scss';

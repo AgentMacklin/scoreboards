@@ -9,9 +9,16 @@ import { useState } from 'react';
 type SetterCallback = (value: boolean) => void;
 const numRounds = 13;
 
+const Icon = () => {
+  return (
+    <div className="container has-text-centered pb-5">
+      <img src="domino.svg" style={{ transform: 'rotate(270deg)' }} width="120"></img>
+    </div>
+  );
+};
+
 export default function MexicanDominoes() {
   const [players, setPlayers] = useState<Player[]>([]);
-
 
   // used for creating players
   const [inputName, setInputName] = useState<string | undefined>('');
@@ -35,10 +42,10 @@ export default function MexicanDominoes() {
     for (let i = 0; i < player.scores.length; i++) {
       if (player.scores[i]) player.total += player.scores[i];
     }
-    const updatedPlayers = players.map((p) => (p === player ? player : p));
+    const updatedPlayers = players.map((p) => (p.name === player.name ? player : p));
+    console.log(players, updatedPlayers);
     setPlayers(updatedPlayers);
   };
-
 
   // Helper function that can enable and automatically close one of the notifications
   // after a delay
@@ -63,8 +70,8 @@ export default function MexicanDominoes() {
 
   const nameUpdater = (player: Player, name: string) => {
     player.name = name;
-    setPlayers(players.map(p => p === player ? player : p))
-  }
+    setPlayers(players.map((p) => (p === player ? player : p)));
+  };
 
   // Initialize a new player, and will toggle a notification if there's an error
   const addPlayer = () => {
@@ -94,54 +101,52 @@ export default function MexicanDominoes() {
       <Head>
         <title>Scoreboards | Mexican Dominoes</title>
       </Head>
-      <div className="section">
+      <div className="container pb-5">
         <Breadcrumb></Breadcrumb>
-        <div className="container pb-5">
-          <div className="columns">
-            <div className="column">
-
-              {playerExists && (
-                <Notification disable={() => disableNotification(setPlayerExists)}>
-                  A player with that name already exists. Please choose a different name.
-                </Notification>
-              )}
-              {playerNameEmpty && (
-                <Notification disable={() => disableNotification(setPlayerNameEmpty)}>
-                  Name is required to create a player. Please input your name.
-                </Notification>
-              )}
-              <div className="field has-addons">
-                <div className="control has-icons-left is-expanded">
-                  <span className="icon is-small is-left pl-2">
-                    <i className="material-icons">person</i>
-                  </span>
-                  <input
-                    value={inputName}
-                    onKeyUp={handleNameInput}
-                    onChange={(e) => setInputName(e.target.value)}
-                    className="input is-rounded"
-                    type="text"
-                    placeholder="Enter your name..."
-                  />
-                </div>
-                <div className="control">
-                  <button onClick={addPlayer} className="button is-primary is-rounded">
-                    Create
-              </button>
-                </div>
+        <Icon />
+        <div className="columns">
+          <div className="column">
+            {playerExists && (
+              <Notification disable={() => disableNotification(setPlayerExists)}>
+                A player with that name already exists. Please choose a different name.
+              </Notification>
+            )}
+            {playerNameEmpty && (
+              <Notification disable={() => disableNotification(setPlayerNameEmpty)}>
+                Name is required to create a player. Please input your name.
+              </Notification>
+            )}
+            <div className="field has-addons">
+              <div className="control has-icons-left is-expanded">
+                <span className="icon is-small is-left pl-2">
+                  <i className="material-icons">person</i>
+                </span>
+                <input
+                  value={inputName}
+                  onKeyUp={handleNameInput}
+                  onChange={(e) => setInputName(e.target.value)}
+                  className="input is-rounded"
+                  type="text"
+                  placeholder="Enter your name..."
+                />
               </div>
-              <Scoreboard
-                players={players}
-                numCols={13}
-                reversed={true}
-                deleter={deletePlayer}
-                scoreUpdater={scoreUpdater}
-                nameUpdater={nameUpdater}
-              ></Scoreboard>
+              <div className="control">
+                <button onClick={addPlayer} className="button is-primary is-rounded">
+                  Create
+                </button>
+              </div>
             </div>
-            <div className="column is-one-third-tablet is-one-fifth-desktop">
-              <Leaderboard gameResetter={() => setPlayers([])} players={createLeaderboardArray()}></Leaderboard>
-            </div>
+            <Scoreboard
+              players={players}
+              numCols={13}
+              reversed={true}
+              deleter={deletePlayer}
+              scoreUpdater={scoreUpdater}
+              nameUpdater={nameUpdater}
+            ></Scoreboard>
+          </div>
+          <div className="column is-one-third-tablet is-one-fifth-desktop">
+            <Leaderboard gameResetter={() => setPlayers([])} players={createLeaderboardArray()}></Leaderboard>
           </div>
         </div>
       </div>
