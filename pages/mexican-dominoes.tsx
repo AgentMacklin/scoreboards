@@ -12,6 +12,7 @@ const numRounds = 13;
 export default function MexicanDominoes() {
   const [players, setPlayers] = useState<Player[]>([]);
 
+
   // used for creating players
   const [inputName, setInputName] = useState<string | undefined>('');
 
@@ -38,6 +39,7 @@ export default function MexicanDominoes() {
     setPlayers(updatedPlayers);
   };
 
+
   // Helper function that can enable and automatically close one of the notifications
   // after a delay
   const enableNotification = (setter: SetterCallback) => {
@@ -58,6 +60,11 @@ export default function MexicanDominoes() {
     playerToSort.sort((a, b) => a.total - b.total);
     return playerToSort.map((p) => p.name);
   };
+
+  const nameUpdater = (player: Player, name: string) => {
+    player.name = name;
+    setPlayers(players.map(p => p === player ? player : p))
+  }
 
   // Initialize a new player, and will toggle a notification if there's an error
   const addPlayer = () => {
@@ -90,46 +97,46 @@ export default function MexicanDominoes() {
       <div className="section">
         <Breadcrumb></Breadcrumb>
         <div className="container pb-5">
-          {playerExists && (
-            <Notification disable={() => disableNotification(setPlayerExists)}>
-              A player with that name already exists. Please choose a different name.
-            </Notification>
-          )}
-          {playerNameEmpty && (
-            <Notification disable={() => disableNotification(setPlayerNameEmpty)}>
-              Name is required to create a player. Please input your name.
-            </Notification>
-          )}
-          <div className="field has-addons">
-            <div className="control has-icons-left is-expanded">
-              <span className="icon is-small is-left pl-2">
-                <i className="material-icons">person</i>
-              </span>
-              <input
-                value={inputName}
-                onKeyUp={handleNameInput}
-                onChange={(e) => setInputName(e.target.value)}
-                className="input is-rounded"
-                type="text"
-                placeholder="Enter your name..."
-              />
-            </div>
-            <div className="control">
-              <button onClick={addPlayer} className="button is-primary is-rounded">
-                Create
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="container">
           <div className="columns">
             <div className="column">
+
+              {playerExists && (
+                <Notification disable={() => disableNotification(setPlayerExists)}>
+                  A player with that name already exists. Please choose a different name.
+                </Notification>
+              )}
+              {playerNameEmpty && (
+                <Notification disable={() => disableNotification(setPlayerNameEmpty)}>
+                  Name is required to create a player. Please input your name.
+                </Notification>
+              )}
+              <div className="field has-addons">
+                <div className="control has-icons-left is-expanded">
+                  <span className="icon is-small is-left pl-2">
+                    <i className="material-icons">person</i>
+                  </span>
+                  <input
+                    value={inputName}
+                    onKeyUp={handleNameInput}
+                    onChange={(e) => setInputName(e.target.value)}
+                    className="input is-rounded"
+                    type="text"
+                    placeholder="Enter your name..."
+                  />
+                </div>
+                <div className="control">
+                  <button onClick={addPlayer} className="button is-primary is-rounded">
+                    Create
+              </button>
+                </div>
+              </div>
               <Scoreboard
                 players={players}
                 numCols={13}
                 reversed={true}
                 deleter={deletePlayer}
-                updater={scoreUpdater}
+                scoreUpdater={scoreUpdater}
+                nameUpdater={nameUpdater}
               ></Scoreboard>
             </div>
             <div className="column is-one-third-tablet is-one-fifth-desktop">

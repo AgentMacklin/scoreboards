@@ -9,6 +9,9 @@ export default function Leaderboard(props: LeaderboardProps) {
     <div className="card">
       <div className="card-header">
         <div className="card-header-title">Leaderboard</div>
+        <div className="card-header-icon">
+          <i className="material-icons">star</i>
+        </div>
       </div>
       <div className="card-content">
         <ol>
